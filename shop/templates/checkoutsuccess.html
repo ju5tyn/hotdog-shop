@@ -1,0 +1,16 @@
+{% extends "layout.html"%} {% block content %}
+<div class="page-content">
+    <div >
+        <h1 id="checkout_success">Checkout success!</h1>
+        <p>Thank for purchasing.</p>
+    </div>
+    <button
+        onclick="window.location.href='{{ url_for('front_page') }}'"
+        type="submit"
+        class="details item-button"
+        value="Submit"
+    >
+        back to home
+    </button>
+</div>
+{% endblock content %}

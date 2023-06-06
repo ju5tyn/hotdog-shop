@@ -1,0 +1,73 @@
+{% extends "layout.html"%} {% block content %}
+
+<script type="text/javascript">
+        
+    nameField = document.getElementById("name");
+    numberField = document.getElementById("card_no");
+    
+        
+    nameField.addEventListener("click", showTip("name"));
+    numberField.addEventListener("click", window.alert("LOOL"));
+        
+        
+    function showTip(tip){
+        var tip_name=document.getElementById("tip-name"); 
+        var tip_number=document.getElementById("tip-number"); 
+        
+        hideTips();
+        
+        if (tip == "name"){
+            tip_name.style.display = 'block';
+        } else if (tip == "number"){
+            tip_number.style.display = 'block';
+        };
+    };
+    
+    function hideTips(){
+        var tip_name=document.getElementById("tip-name"); 
+        var tip_number=document.getElementById("tip-number"); 
+        
+        tip_name.style.display = 'none';
+        tip_number.style.display = 'none';
+        
+    };
+</script>
+
+<div class="page-content">
+    <div class="top-bar">
+        <h3>
+            <a class="back-button" href="{{ url_for('cart') }}"
+                >⬅ back to basket</a
+            >
+        </h3>
+    </div>
+    <div class="top-bar">
+        <h3>amount to pay:</h3>
+        <h1>${{total}}0</h1>
+    </div>
+    <div class="form checkout_form">
+        <form id="input" method="POST" action="">
+            {{ form.csrf_token }}
+            <p class="form-field">{{ form.name.label }} {{ form.name(class_="input-name", id_="name", onclick="showTip('name')") }}</p>
+            <p class="tip tip-name" id="tip-name">(name shown on card)</p>
+            
+            <p class="form-field">
+                {{ form.card_no.label }} {{ form.card_no(class_="input-card", placeholder_="XXXXXXXXXXXXXXXX", id_="card_no", onclick_="showTip('number')") }}
+            </p>
+            <p class="tip tip-number" id="tip-number">(16 digit card number)</p>
+            
+            <p>{{form.submit(id="submit", class="item-button submit-button")}}</p>
+            <!--
+            <input
+                id="submit"
+                type="submit"
+                class="item-button submit-button"
+                value="pay"
+            />
+        -->
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

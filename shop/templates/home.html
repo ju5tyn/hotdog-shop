@@ -1,0 +1,77 @@
+{% extends "layout.html"%} {% block content %}
+
+
+
+<div class="page-content">
+    <div class="top-bar top-bar-home">
+        {% if sorting_form != None %}
+        <h3>shop</h3>
+        {% else %}
+        <h3>search</h3>
+        {% endif %}
+        <div class="sort-by-home">
+            {% if sorting_form != None %}
+            <div>
+                <h3>sort by:</h3>
+            </div>
+            <div class="sort-by-form">
+                
+                <form class="" method="POST" action="">
+                    
+                    {{ sorting_form.csrf_token }} {{sorting_form.sort_type}}
+                </form>
+            </div>
+            {% endif %}
+            <div class="search-home">
+                <form class="search-form" method="POST" action="">
+                {{ search_form.csrf_token }} {{ search_form.search(class_="search-form", placeholder_="search for an item") }} {{ search_form.submit(class_="search-form") }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="items">
+        {% for item in items %}
+        <div class="gallery_item item">
+            <img
+                class="item-image"
+                src="{{ url_for('static', filename='img/dogs/' + item.image_file) }}"
+            />
+            <!--<p>{{item.id}}</p>-->
+            <div class="item-main-text">
+                <p class="item_name item-name">{{ item.name }}</p>
+                <p class="item-currency">$</p>
+                
+                
+                {% if item.price%1 == 0 %}
+                <p class="item_price item-price">{{ item.price }}0</p>
+                {% else %}
+                <p class="item_price item-price">{{ item.price }}0</p>
+                {% endif %}
+            </div>
+            <p class="item_description item-description">
+                {{ item.description }}
+            </p>
+            <div class="item-buttons">
+                <button
+                    onclick="window.location.href='{{ url_for('item', item_id=item.id) }}'"
+                    type="submit"
+                    class="details item-button"
+                    value="Submit"
+                >
+                    learn more
+                </button>
+                <br />
+                <button
+                    onclick="window.location.href='{{ url_for('add_item', item_id=item.id) }}'"
+                    type="submit"
+                    class="add_to_cart item-button"
+                    value="Submit"
+                >
+                    add to basket
+                </button>
+            </div>
+        </div>
+        {% endfor %} {% endblock content %}
+    </div>
+</div>

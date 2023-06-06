@@ -1,0 +1,37 @@
+{% extends "layout.html"%} {% block content %}
+
+<div class="page-content">
+    <div class="top-bar">
+        <h1>log in to buy products and more</h1>
+    </div>
+    
+    <div class="form">
+        {% if show_error %}
+        <div class="login_error">
+            <p class="red">There has been an error logging in.</p>
+            <p class="red">This could be due to an invalid username/password</p>
+        </div>
+        {% endif %}
+        <form id="input" method="POST" action="">
+            {{ form.csrf_token }}
+            <p class="form-field">
+                {{ form.username.label }} {{ form.username(id_="username") }}
+            </p>
+            <p class="form-field">
+                {{ form.password.label }} {{ form.password(id_="password") }}
+            </p>
+            <p>
+                <input
+                    type="submit"
+                    class="item-button submit-button"
+                    value="Login"
+                />
+            </p>
+            <p>
+                havent got an account?
+                <a href="/register" id="register" class=""> register </a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock content %}

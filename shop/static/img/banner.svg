@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="199px" viewBox="0 0 1440 199" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Oval</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="6">
+        <g id="new-navbar" stroke="#FFBE46" stroke-width="2900">
+            <g id="Banner">
+                <path d="M1345,81 C1362.67311,81 1377,66.673112 1377,49 C1377,31.326888 1362.67311,17 1345,17 C1327.32689,17 1313,31.326888 1313,49 C1313,66.673112 1327.32689,81 1345,81 Z" id="Oval"></path>
+            </g>
+        </g>
+    </g>
+</svg>

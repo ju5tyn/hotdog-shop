@@ -1,0 +1,37 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="page-content">
+	<div class="top-bar">
+		<h3>
+			<a class="back-button" href="{{url_for('item', item_id=item.id)}}">⬅ back</a>
+		</h3>
+		<h1>
+			add a review
+		</h1>
+		<p class="item-description">for: {{ item.name }}</p>
+		
+		<form id="input" method="POST" action="">
+			{{ form.csrf_token }}
+			<p id="subject" class="form-field">
+				{{ form.subject.label }} {{ form.subject(id="input") }}
+			</p>
+			<p id="description" class="form-field">
+				{{ form.description.label }} {{ form.description(id="input") }}
+			</p>
+			<p id="rating" class="form-field">
+				{{ form.rating.label }} {{ form.rating(id="input") }}
+			</p>
+			<p>
+				<input
+					type="submit"
+					class="item-button submit-button"
+					value="Submit"
+				/>
+			</p>
+		</form>
+	</div>
+	<div class="description">
+		
+	</div>
+</div>
+{% endblock content %}

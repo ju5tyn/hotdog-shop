@@ -1,0 +1,94 @@
+{% extends "layout.html"%} {% block content %}
+
+<div class="page-content">
+    <div class="top-bar">
+        {% if cartitems.first() == None %}
+
+        <h1>basket is empty</h1>
+        <p><a href="/home" id="login" class=""> add some items</a></p>
+
+        {%else%}
+        <h3>basket</h3>
+        {%endif%}
+    </div>
+    {% for cartitem in cartitems %}
+    <div class="cart-item">
+        <div class="cart-item-left">
+            <img
+                class="item-image cart-image"
+                src="{{ url_for('static', filename='img/dogs/' + items[cartitem.item_id-1].image_file) }}"
+            />
+            <h2 class="cart-item-text">{{items[cartitem.item_id-1].name}}</h2>
+            <h2 class="amount-text">x{{cartitem.quantity}}</h2>
+        </div>
+        
+        <p class="">
+            <a class="add_remove_button red" href="{{ url_for('remove_one', item_id=cartitem.item_id) }}"
+                >-</a
+            >
+            <a class="add_remove_button green" href="{{ url_for('add_one', item_id=cartitem.item_id) }}"
+                >+</a
+            >
+        </p>
+        
+        <p class="remove">
+            <a class="red" href="{{ url_for('remove_all_item', item_id=cartitem.item_id) }}"
+                >remove</a
+            >
+        </p>
+        
+        <div class="cart-item-right">
+            <div class="cart-item-right cart-item-text item-name">
+                <p class="">$</p>
+                <p class="cart-item-right item_price item-name">
+                    {{items[cartitem.item_id-1].price * cartitem.quantity}}0
+                </p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %} {% if cartitems.first() != None %}
+    <div class="line-divider"></div>
+	
+	<div class="cart-item">
+		<h3 class="cart-item-left">subtotal</h3>
+		<div class="cart-item-right item-name">
+			<p class="">$</p>
+            {% if subtotal%1 == 0 %}
+			<p class="cart-item-right" id="total_price">{{subtotal}}.00</p>
+            {% else %}
+            <p class="cart-item-right" id="total_price">{{subtotal}}0</p>
+            {% endif %}
+		</div>
+	</div>
+	
+
+    <div class="cart-item">
+        <h3 class="cart-item-left">shipping</h3>
+        <h2 class="cart-item-right item-name">${{shipping_cost}}0</h2>
+    </div>
+
+    <div class="line-divider"></div>
+
+    <div class="cart-item">
+        <h2 class="cart-item-left">total</h2>
+        <div class="cart-item-right item-name">
+            <p class="">$</p>
+            <p class="cart-item-right">{{total}}0</p>
+        </div>
+    </div>
+    <div class="cart-button">
+        <button
+            onclick="window.location.href='{{ url_for('checkout') }}'"
+            type="submit"
+            id="checkout"
+            class="add_to_cart item-button"
+            value="Submit"
+        >
+            check out
+        </button>
+    </div>
+
+    {%endif%}
+</div>
+{% endblock content %}

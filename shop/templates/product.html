@@ -1,0 +1,80 @@
+{% extends "layout.html" %} {% block content %}
+
+<div class="page-content">
+    <div class="top-bar">
+        <h3>
+            <a class="back-button" href="{{ url_for('front_page') }}">⬅ back</a>
+        </h3>
+    </div>
+    <div class="description">
+        <div class="">
+            <h1>{{ item.name }}</h1>
+
+            <p class="item-description">{{ item.description }}</p>
+            <div class="info-icons">
+                {% if item.vegetarian == True %}
+
+                <img
+                    class="vegetarian-icon"
+                    src="{{ url_for('static', filename='img/vegetarian.png') }}"
+                />
+
+                {% endif %}
+                <div>
+                    <p class="info-label large">{{item.calories}}</p>
+                    <p class="info-label">calories</p>
+                </div>
+                <div>
+                    <p class="info-label large rating{{item.eco_rating}}">
+                        {{item.eco_rating}}
+                    </p>
+                    <p class="info-label">eco rating</p>
+                </div>
+            </div>
+
+            <button
+                onclick="window.location.href='{{ url_for('add_item', item_id=item.id) }}'"
+                type="submit"
+                role="button"
+                class="add_to_cart item-button"
+                form="form1"
+                value="Submit"
+            >
+                ${{ item.price }} · add to cart
+            </button>
+        </div>
+        <div class="">
+            <img
+                class="description-image"
+                src="{{ url_for('static', filename='img/dogs/' + item.image_file) }}"
+            />
+        </div>
+    </div>
+    <div class="top-bar">
+        <h3>
+            reviews
+        </h3>
+    </div>
+    <div class="reviews">
+        <button
+            onclick="window.location.href='{{ url_for('item_review', item_id=item.id) }}'"
+            type="submit"
+            role="button"
+            class="item-button cart-button"
+            form="form1"
+            value="Submit"
+        >
+            add a review
+        </button>
+        
+        {% for review in reviews %}
+        
+        <h3>{{review.subject}}</h3>
+        <p>{{review.description}}</p>
+        <p>Written by: {{users[review.user_id-1].username}}</p>
+        
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock content %}
