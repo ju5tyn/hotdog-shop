@@ -4,10 +4,6 @@
 ```
 python -m venv venv
 ```
-or on the school Linux desktops
-```
-python3 -m venv venv
-```
 * activate the environment (every startup)
 ```
 venv\Scripts\activate
